@@ -7,9 +7,9 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - python
   - javascript
 
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+# toc_footers:
+  # - <a href='#'>Sign Up for a Developer Key</a>
+  # - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -21,80 +21,78 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Streaminy API! You can use our API to access Streaminy API endpoints, which can get information on various streams and views.
 
 We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 # Authentication
 
 > To authorize, use this code:
 
 ```ruby
-require 'kittn'
+require 'streaminy'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+api = Streaminy::APIClient.authorize!('meowmeowmeow')
 ```
 
 ```python
-import kittn
+import streaminy
 
-api = kittn.authorize('meowmeowmeow')
+api = streaminy.authorize('meowmeowmeow')
 ```
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+curl "https://www.streaminy.io/authorization" \
+  -H "Authorization: API_KEY"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const streaminy = require('streaminy');
 
-let api = kittn.authorize('meowmeowmeow');
+let api = streaminy.authorize('API_KEY');
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `API_KEY` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Streaminy uses API keys to allow access to the API. You can view yours in [your profile](http://streaminy.io/profile).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Streaminy expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: API_KEY`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>API_KEY</code> with your personal API key.
 </aside>
 
-# Kittens
+# Streams
 
-## Get All Kittens
+## Get All Streams
 
 ```ruby
-require 'kittn'
+require 'streaminy'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+api = Streaminy::APIClient.authorize!('API_KEY')
+api.streams.get
 ```
 
 ```python
-import kittn
+import streaminy
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+api = streaminy.authorize('API_KEY')
+api.streams.get()
 ```
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
+curl "http://streaminy.io/api/v1/streaminy" \
+  -H "Authorization: API_KEY"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const streaminy = require('streaminy');
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+let api = streaminy.authorize('API_KEY');
+let streams = api.streams.get();
 ```
 
 > The above command returns JSON structured like this:
@@ -102,65 +100,67 @@ let kittens = api.kittens.get();
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "streamId": "a1511384-0903-473d-ad95-2e93f102406e",
+    "name": "Bitcoin price",
+    "structure": {
+      "bitcoin_value": "number",
+      "timestamp": "string"
+    },
   },
   {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
+    "streamId": "fa8b7192-4f43-4151-86b7-749b78121e92",
+    "name": "Sell",
+    "structure": {
+      "category": "string",
+      "price": "number"
+    },
+  },
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all streams.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET http://streaminy.io/api/v1/streams`
 
-### Query Parameters
+<!-- ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
 include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+available | true | If set to false, the result will include streams that have already been adopted.
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+Remember — a happy stream is an authenticated stream!
+</aside> -->
 
-## Get a Specific Kitten
+## Get a Specific Straem
 
 ```ruby
-require 'kittn'
+require 'streaminy'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+api = Streaminy::APIClient.authorize!('API_KEY')
+api.streams.get("a1511384-0903-473d-ad95-2e93f102406e")
 ```
 
 ```python
-import kittn
+import streaminy
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+api = streaminy.authorize('API_KEY')
+api.streams.get("a1511384-0903-473d-ad95-2e93f102406e")
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
+curl "http://streaminy.io/api/v1/streams/a1511384-0903-473d-ad95-2e93f102406e" \
+  -H "Authorization: API_KEY"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const streaminy = require('streaminy');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+let api = streaminy.authorize('API_KEY');
+let max = api.streams.get(2);
 ```
 
 > The above command returns JSON structured like this:
@@ -175,67 +175,71 @@ let max = api.kittens.get(2);
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves a specific stream.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<!-- <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside> -->
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET http://example.com/streams/`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+ID | The ID of the stream to retrieve
 
-## Delete a Specific Kitten
+## Delete a Specific Stream
 
 ```ruby
-require 'kittn'
+require 'streaminy'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
+api = streaminy::APIClient.authorize!('API_KEY')
+api.streams.delete('a1511384-0903-473d-ad95-2e93f102406e')
 ```
 
 ```python
-import kittn
+import streaminy
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
+api = streaminy.authorize('API_KEY')
+api.streams.delete('a1511384-0903-473d-ad95-2e93f102406e')
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2" \
+curl "http://streaminy.io/api/v1/streams/a1511384-0903-473d-ad95-2e93f102406e" \
   -X DELETE \
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: API_KEY"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const streaminy = require('streaminy');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+let api = streaminy.authorize('API_KEY');
+let max = api.streams.delete('a1511384-0903-473d-ad95-2e93f102406e');
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "streamId": "a1511384-0903-473d-ad95-2e93f102406e",
+  "name": "Bitcoin price",
+  "structure": {
+    "bitcoin_value": "number",
+    "timestamp": "string"
+  },
 }
 ```
 
-This endpoint deletes a specific kitten.
+This endpoint deletes a specific stream.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`DELETE http://streaminy.io/api/v1/streams/a1511384-0903-473d-ad95-2e93f102406e`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+streamId | The ID of the stream to delete
 
