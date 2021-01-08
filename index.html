@@ -329,6 +329,20 @@
               </ul>
           </li>
           <li>
+            <a href="#views" class="toc-h1 toc-link" data-title="Views">Views</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-views" class="toc-h2 toc-link" data-title="Get All Views">Get All Views</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-view" class="toc-h2 toc-link" data-title="Get a Specific View">Get a Specific View</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-specific-stream-2" class="toc-h2 toc-link" data-title="Delete a Specific Stream">Delete a Specific Stream</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
@@ -378,7 +392,7 @@ You must replace <code>API_KEY</code> with your personal API key.
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">streaminy</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'API_KEY'</span><span class="p">)</span>
 <span class="n">api</span><span class="p">.</span><span class="n">streams</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://streaminy.io/api/v1/streaminy"</span> <span class="se">\</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://streaminy.io/api/v1/streams"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: API_KEY"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">streaminy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">streaminy</span><span class="dl">'</span><span class="p">);</span>
 
@@ -505,6 +519,136 @@ Remember — a happy stream is an authenticated stream!
 <tr>
 <td>streamId</td>
 <td>The ID of the stream to delete</td>
+</tr>
+</tbody></table>
+<h1 id='views'>Views</h1><h2 id='get-all-views'>Get All Views</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'streaminy'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Streaminy</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'API_KEY'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">views</span><span class="p">.</span><span class="nf">get</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">streaminy</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">streaminy</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'API_KEY'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="n">views</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://streaminy.io/api/v1/views"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: API_KEY"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">streaminy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">streaminy</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">streaminy</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">API_KEY</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">views</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">views</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"viewId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"feddab2a-9360-4979-8cae-a731d50401ed"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Last bitcoin price"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELECT bitcoint_value from </span><span class="se">\"</span><span class="s2">stream_a1511384-0903-473d-ad95-2e93f102406e</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregationTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 minute"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"viewId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27d9bc77-4e5a-4cd4-9062-ec5f0911ad71"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Average sell price in the last minute"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELECT AVG(price) from </span><span class="se">\"</span><span class="s2">stream_fa8b7192-4f43-4151-86b7-749b78121e92</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregationTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 minute"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves all views.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET http://streaminy.io/api/v1/views</code></p>
+
+<!-- ### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+include_cats | false | If set to true, the result will also include cats.
+available | true | If set to false, the result will include views that have already been adopted.
+
+<aside class="success">
+Remember — a happy stream is an authenticated stream!
+</aside> -->
+<h2 id='get-a-specific-view'>Get a Specific View</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'streaminy'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Streaminy</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'API_KEY'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">views</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"27d9bc77-4e5a-4cd4-9062-ec5f0911ad71"</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">streaminy</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">streaminy</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'API_KEY'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="n">views</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"27d9bc77-4e5a-4cd4-9062-ec5f0911ad71"</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://streaminy.io/api/v1/views/27d9bc77-4e5a-4cd4-9062-ec5f0911ad71"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: API_KEY"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">streaminy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">streaminy</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">streaminy</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">API_KEY</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">views</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">27d9bc77-4e5a-4cd4-9062-ec5f0911ad71</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"viewId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"feddab2a-9360-4979-8cae-a731d50401ed"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Last bitcoin price"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELECT bitcoint_value from </span><span class="se">\"</span><span class="s2">stream_a1511384-0903-473d-ad95-2e93f102406e</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"aggregationTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 minute"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves a specific stream.</p>
+
+<!-- <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside> -->
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET http://example.com/views/</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the view to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-specific-stream-2'>Delete a Specific Stream</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'streaminy'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">streaminy</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'API_KEY'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">views</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s1">'a1511384-0903-473d-ad95-2e93f102406e'</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">streaminy</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">streaminy</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'API_KEY'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="n">views</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'a1511384-0903-473d-ad95-2e93f102406e'</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://streaminy.io/api/v1/views/a1511384-0903-473d-ad95-2e93f102406e"</span> <span class="se">\</span>
+  <span class="nt">-X</span> DELETE <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: API_KEY"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">streaminy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">streaminy</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">streaminy</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">API_KEY</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">views</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="dl">'</span><span class="s1">feddab2a-9360-4979-8cae-a731d50401ed</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"viewId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"feddab2a-9360-4979-8cae-a731d50401ed"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Last bitcoin price"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELECT bitcoint_value from </span><span class="se">\"</span><span class="s2">stream_a1511384-0903-473d-ad95-2e93f102406e</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"aggregationTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 minute"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint deletes a specific stream.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>DELETE http://streaminy.io/api/v1/views/feddab2a-9360-4979-8cae-a731d50401ed</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>streamId</td>
+<td>The ID of the view to delete</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
