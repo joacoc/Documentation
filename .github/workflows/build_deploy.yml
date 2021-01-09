@@ -43,15 +43,5 @@ jobs:
       - name: bundle install
         run: |
           bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+          bundle install --jobs 4
       - run: bundle exec middleman build
-
-      - name: Deploy build to Server
-        uses: wlixcc/SFTP-Deploy-Action@v1.0
-        with:
-          username: 'rootuser'
-          server: '${{ secrets.HOST }}'
-          ssh_private_key: ${{ secrets.PRIVATE_KEY }}
-          local_path: './buid/*'
-          remote_path: 'Documentation/build'
-          args: '-o ConnectTimeout=5'
