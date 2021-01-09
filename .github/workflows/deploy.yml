@@ -33,14 +33,6 @@ jobs:
 
     - run: bundle exec middleman build
 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
-        keep_files: true
-
-
     - name: Deploy build to Server		
        uses: wlixcc/SFTP-Deploy-Action@v1.0		
        with:		
