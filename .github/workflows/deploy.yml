@@ -34,11 +34,11 @@ jobs:
     - run: bundle exec middleman build
 
     - name: Deploy build to Server		
-       uses: wlixcc/SFTP-Deploy-Action@v1.0		
-       with:		
-         username: '${{ secrets.USER }}'		
-         server: '${{ secrets.HOST }}'		
-         ssh_private_key: ${{ secrets.PRIVATE_KEY }}		
-         local_path: './buid/*'		
-         remote_path: 'Documentation/build'
-         args: '-o ConnectTimeout=5'
+      uses: wlixcc/SFTP-Deploy-Action@v1.0
+      with:		
+        username: '${{ secrets.USER }}'		
+        server: '${{ secrets.HOST }}'		
+        ssh_private_key: ${{ secrets.PRIVATE_KEY }}		
+        local_path: './buid/*'		
+        remote_path: 'Documentation/build'
+        args: '-o ConnectTimeout=5'
