@@ -39,3 +39,14 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./build
         keep_files: true
+
+
+    - name: Deploy build to Server		
+       uses: wlixcc/SFTP-Deploy-Action@v1.0		
+       with:		
+         username: '${{ secrets.HOST }}'		
+         server: '${{ secrets.HOST }}'		
+         ssh_private_key: ${{ secrets.PRIVATE_KEY }}		
+         local_path: './buid/*'		
+         remote_path: 'Documentation/build'
+         args: '-o ConnectTimeout=5'
