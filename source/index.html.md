@@ -44,7 +44,7 @@ api = streaminy.authorize('meowmeowmeow')
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "https://www.streaminy.io/authorization" \
-  -H "Authorization: API_KEY"
+  -H "api-key: API_KEY"
 ```
 
 ```javascript

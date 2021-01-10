@@ -18,7 +18,7 @@ api.streams.get()
 
 ```shell
 curl "http://streaminy.io/api/v1/streams" \
-  -H "Authorization: API_KEY"
+  -H "api-key: API_KEY"
 ```
 
 ```javascript
@@ -86,7 +86,7 @@ api.streams.get("a1511384-0903-473d-ad95-2e93f102406e")
 
 ```shell
 curl "http://streaminy.io/api/v1/streams/a1511384-0903-473d-ad95-2e93f102406e" \
-  -H "Authorization: API_KEY"
+  -H "api-key: API_KEY"
 ```
 
 ```javascript
@@ -141,7 +141,7 @@ api.streams.delete('a1511384-0903-473d-ad95-2e93f102406e')
 ```shell
 curl "http://streaminy.io/api/v1/streams/a1511384-0903-473d-ad95-2e93f102406e" \
   -X DELETE \
-  -H "Authorization: API_KEY"
+  -H "api-key: API_KEY"
 ```
 
 ```javascript
